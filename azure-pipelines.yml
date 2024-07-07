@@ -10,7 +10,7 @@ steps:
 - task: UseDotNet@2
   displayName: 'Use .NET SDK 6.x'
   inputs:
-    pakageType: sdk
+    packageType: sdk
     version: '6.x'
 
 - task: Npm@1
@@ -33,3 +33,11 @@ steps:
   inputs: 
     command: 'restore'
     projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build the project - Release'
+  inputs:
+    command: 'build'
+    arguments: '--no-restore --configuration Release'
+    projects: '**/*.csproj'
+    
