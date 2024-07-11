@@ -44,6 +44,14 @@ steps:
   parameters:
     buildConfiguration: 'Release'
 
+- task: DotNetCoreCLI@2
+  displayName: 'Running unit tests - $(buildConfiguration)'
+  inputs:
+    command: 'test'
+    arguments: '--no-build --configuration $(buildConfiguration)'
+    publishTestResults: true
+    projects: '**/*.csproj'
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifacts: drop'
   condition: succeeded()
